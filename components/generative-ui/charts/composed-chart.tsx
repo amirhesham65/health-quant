@@ -6,7 +6,6 @@ import {
   ComposedChart,
   Legend,
   Line,
-  ResponsiveContainer,
   XAxis,
   YAxis,
 } from "recharts";
@@ -64,35 +63,33 @@ export function ComposedChartCard({
       </CardHeader>
       <CardContent className="relative p-6">
         <ChartContainer config={{}} className="h-[300px] w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <ComposedChart accessibilityLayer data={data} margin={{ left: 20, right: 20, top: 20, bottom: 20 }}>
-              <CartesianGrid vertical={false} />
-              <XAxis
-                dataKey="label"
-                tickLine={false}
-                tickMargin={10}
-                axisLine={false}
-                tickFormatter={(value) => value.slice(0, 6)}
+          <ComposedChart accessibilityLayer data={data} margin={{ left: 20, right: 20, top: 20, bottom: 20 }}>
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="label"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+              tickFormatter={(value) => value.slice(0, 6)}
+            />
+            <YAxis />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            <Legend />
+            <Bar dataKey={barKey} fill={colors[0]} radius={[4, 4, 0, 0]} />
+            {lineKeys.map((key, index) => (
+              <Line
+                key={key}
+                dataKey={key}
+                type="monotone"
+                stroke={colors[(index + 1) % colors.length]}
+                strokeWidth={2}
+                dot={false}
               />
-              <YAxis />
-              <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent hideLabel />}
-              />
-              <Legend />
-              <Bar dataKey={barKey} fill={colors[0]} radius={[4, 4, 0, 0]} />
-              {lineKeys.map((key, index) => (
-                <Line
-                  key={key}
-                  dataKey={key}
-                  type="monotone"
-                  stroke={colors[(index + 1) % colors.length]}
-                  strokeWidth={2}
-                  dot={false}
-                />
-              ))}
-            </ComposedChart>
-          </ResponsiveContainer>
+            ))}
+          </ComposedChart>
         </ChartContainer>
         {!noAddButton && (
           <ChartButton

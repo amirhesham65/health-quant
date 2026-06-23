@@ -54,14 +54,14 @@ export default function DashboardPanelFlow({ isReadOnly = false }: { isReadOnly?
   );
 
   const onLoad = () => {
-    fitView();
+    fitView({ padding: 0.08 });
   };
 
   useEffect(() => {
     if (nodes.length > 0) {
       setTimeout(() => {
         fitView({
-          padding: 0.2,
+          padding: 0.08,
           duration: 200,
         });
       }, 100);

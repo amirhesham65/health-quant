@@ -5,7 +5,6 @@ import {
   Legend,
   Line,
   LineChart,
-  ResponsiveContainer,
   XAxis,
 } from "recharts";
 
@@ -60,33 +59,31 @@ export function MultiLineChartCard({
       </CardHeader>
       <CardContent className="relative p-6">
         <ChartContainer config={{}} className="h-[300px] w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart accessibilityLayer data={data} margin={{ left: 20, right: 20, top: 20, bottom: 20 }}>
-              <CartesianGrid vertical={false} />
-              <XAxis
-                dataKey="label"
-                tickLine={false}
-                axisLine={false}
-                tickMargin={8}
-                tickFormatter={(value) => value.slice(0, 6)}
+          <LineChart accessibilityLayer data={data} margin={{ left: 20, right: 20, top: 20, bottom: 20 }}>
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="label"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              tickFormatter={(value) => value.slice(0, 6)}
+            />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            <Legend />
+            {keysToRender.map((key, index) => (
+              <Line
+                key={key}
+                dataKey={key}
+                type="natural"
+                stroke={colors[index % colors.length]}
+                strokeWidth={2}
+                dot={false}
               />
-              <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent hideLabel />}
-              />
-              <Legend />
-              {keysToRender.map((key, index) => (
-                <Line
-                  key={key}
-                  dataKey={key}
-                  type="natural"
-                  stroke={colors[index % colors.length]}
-                  strokeWidth={2}
-                  dot={false}
-                />
-              ))}
-            </LineChart>
-          </ResponsiveContainer>
+            ))}
+          </LineChart>
         </ChartContainer>
         {!noAddButton && (
           <ChartButton

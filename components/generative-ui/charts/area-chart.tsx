@@ -5,7 +5,6 @@ import {
   AreaChart,
   CartesianGrid,
   XAxis,
-  ResponsiveContainer,
   Legend,
 } from "recharts";
 
@@ -79,59 +78,57 @@ export function AreaChartCard({
       </CardHeader>
       <CardContent className="relative p-6">
         <ChartContainer config={{}} className="h-[300px] w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart
-              accessibilityLayer
-              data={data}
-              margin={{
-                left: 20,
-                right: 20,
-                top: 20,
-                bottom: 20,
-              }}
-            >
-              <CartesianGrid vertical={false} />
-              <XAxis
-                dataKey="label"
-                tickLine={false}
-                axisLine={false}
-                tickMargin={8}
-                tickFormatter={(value) => value.slice(0, 6)}
+          <AreaChart
+            accessibilityLayer
+            data={data}
+            margin={{
+              left: 20,
+              right: 20,
+              top: 20,
+              bottom: 20,
+            }}
+          >
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="label"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              tickFormatter={(value) => value.slice(0, 6)}
+            />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            {keysToRender.map((key, index) => (
+              <Area
+                key={key}
+                dataKey={key}
+                type="natural"
+                fill={`url(#fillArea${index + 1})`}
+                fillOpacity={0.4}
+                stroke={data[0]?.fill || `hsl(${index * 360 / keysToRender.length}, 70%, 50%)`}
+                strokeWidth={2}
               />
-              <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent hideLabel />}
-              />
+            ))}
+            
+            <defs>
               {keysToRender.map((key, index) => (
-                <Area
-                  key={key}
-                  dataKey={key}
-                  type="natural"
-                  fill={`url(#fillArea${index + 1})`}
-                  fillOpacity={0.4}
-                  stroke={data[0]?.fill || `hsl(${index * 360 / keysToRender.length}, 70%, 50%)`}
-                  strokeWidth={2}
-                />
+                <linearGradient key={`gradient-${key}`} id={`fillArea${index + 1}`} x1="0" y1="0" x2="0" y2="1">
+                  <stop
+                    offset="5%"
+                    stopColor={data[0]?.fill || `hsl(${index * 360 / keysToRender.length}, 70%, 50%)`}
+                    stopOpacity={0.8}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor={data[0]?.fill || `hsl(${index * 360 / keysToRender.length}, 70%, 50%)`}
+                    stopOpacity={0.1}
+                  />
+                </linearGradient>
               ))}
-              
-              <defs>
-                {keysToRender.map((key, index) => (
-                  <linearGradient key={`gradient-${key}`} id={`fillArea${index + 1}`} x1="0" y1="0" x2="0" y2="1">
-                    <stop
-                      offset="5%"
-                      stopColor={data[0]?.fill || `hsl(${index * 360 / keysToRender.length}, 70%, 50%)`}
-                      stopOpacity={0.8}
-                    />
-                    <stop
-                      offset="95%"
-                      stopColor={data[0]?.fill || `hsl(${index * 360 / keysToRender.length}, 70%, 50%)`}
-                      stopOpacity={0.1}
-                    />
-                  </linearGradient>
-                ))}
-              </defs>
-            </AreaChart>
-          </ResponsiveContainer>
+            </defs>
+          </AreaChart>
         </ChartContainer>
         {!noAddButton && (
           <ChartButton

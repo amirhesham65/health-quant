@@ -3,7 +3,6 @@
 import {
   CartesianGrid,
   Cell,
-  ResponsiveContainer,
   Scatter,
   ScatterChart,
   XAxis,
@@ -62,23 +61,21 @@ export function BubbleChartCard({
       </CardHeader>
       <CardContent className="relative p-6">
         <ChartContainer config={{}} className="h-[300px] w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-              <CartesianGrid />
-              <XAxis type="number" dataKey="x" name="x" />
-              <YAxis type="number" dataKey="y" name="y" />
-              <ZAxis type="number" dataKey="z" range={[80, 900]} name="size" />
-              <ChartTooltip
-                cursor={{ strokeDasharray: "3 3" }}
-                content={<ChartTooltipContent />}
-              />
-              <Scatter data={bubbleData} dataKey="y">
-                {bubbleData.map((entry, index) => (
-                  <Cell key={`bubble-${entry.name}-${index}`} fill={entry.fill} />
-                ))}
-              </Scatter>
-            </ScatterChart>
-          </ResponsiveContainer>
+          <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+            <CartesianGrid />
+            <XAxis type="number" dataKey="x" name="x" />
+            <YAxis type="number" dataKey="y" name="y" />
+            <ZAxis type="number" dataKey="z" range={[80, 900]} name="size" />
+            <ChartTooltip
+              cursor={{ strokeDasharray: "3 3" }}
+              content={<ChartTooltipContent />}
+            />
+            <Scatter data={bubbleData} dataKey="y">
+              {bubbleData.map((entry, index) => (
+                <Cell key={`bubble-${entry.name}-${index}`} fill={entry.fill} />
+              ))}
+            </Scatter>
+          </ScatterChart>
         </ChartContainer>
         {!noAddButton && (
           <ChartButton

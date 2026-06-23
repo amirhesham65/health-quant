@@ -6,7 +6,6 @@ import {
   PolarRadiusAxis,
   Radar,
   RadarChart,
-  ResponsiveContainer,
 } from "recharts";
 
 import ChartButton from "@/components/custom/chart-button";
@@ -58,30 +57,28 @@ export function RadarChartCard({
           config={{}}
           className="mx-auto aspect-square max-h-[350px]"
         >
-          <ResponsiveContainer width="100%" height="100%">
-            <RadarChart data={radarData}>
-              <PolarGrid />
-              <PolarAngleAxis dataKey="subject" />
-              <PolarRadiusAxis
-                angle={0}
-                domain={[0, "dataMax"]}
-                tick={false}
-                tickCount={5}
-              />
-              <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent hideLabel />}
-              />
-              <Radar
-                name="Value"
-                dataKey="value"
-                stroke={data[0]?.fill || "#8884d8"}
-                fill={data[0]?.fill || "#8884d8"}
-                fillOpacity={0.3}
-                strokeWidth={2}
-              />
-            </RadarChart>
-          </ResponsiveContainer>
+          <RadarChart data={radarData}>
+            <PolarGrid />
+            <PolarAngleAxis dataKey="subject" />
+            <PolarRadiusAxis
+              angle={0}
+              domain={[0, "dataMax"]}
+              tick={false}
+              tickCount={5}
+            />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            <Radar
+              name="Value"
+              dataKey="value"
+              stroke={data[0]?.fill || "#8884d8"}
+              fill={data[0]?.fill || "#8884d8"}
+              fillOpacity={0.3}
+              strokeWidth={2}
+            />
+          </RadarChart>
         </ChartContainer>
         {!noAddButton && (
           <ChartButton

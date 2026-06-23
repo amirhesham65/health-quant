@@ -1,6 +1,6 @@
 "use client";
 
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis, ResponsiveContainer } from "recharts";
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
 import ChartButton from "@/components/custom/chart-button";
 import {
@@ -41,30 +41,28 @@ export function HorizontalBarChartCard({
       </CardHeader>
       <CardContent className="relative p-6">
         <ChartContainer config={{}} className="h-[300px] w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart
-              accessibilityLayer
-              data={data}
-              layout="vertical"
-              margin={{ left: 24, right: 20, top: 10, bottom: 10 }}
-            >
-              <CartesianGrid horizontal={false} />
-              <XAxis type="number" tickLine={false} axisLine={false} />
-              <YAxis
-                type="category"
-                dataKey="label"
-                tickLine={false}
-                axisLine={false}
-                width={90}
-                tickFormatter={(value) => value.slice(0, 12)}
-              />
-              <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent hideLabel />}
-              />
-              <Bar dataKey="value" radius={[0, 6, 6, 0]} />
-            </BarChart>
-          </ResponsiveContainer>
+          <BarChart
+            accessibilityLayer
+            data={data}
+            layout="vertical"
+            margin={{ left: 24, right: 20, top: 10, bottom: 10 }}
+          >
+            <CartesianGrid horizontal={false} />
+            <XAxis type="number" tickLine={false} axisLine={false} />
+            <YAxis
+              type="category"
+              dataKey="label"
+              tickLine={false}
+              axisLine={false}
+              width={90}
+              tickFormatter={(value) => value.slice(0, 12)}
+            />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            <Bar dataKey="value" radius={[0, 6, 6, 0]} />
+          </BarChart>
         </ChartContainer>
         {!noAddButton && (
           <ChartButton

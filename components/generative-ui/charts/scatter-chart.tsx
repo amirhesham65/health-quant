@@ -6,7 +6,6 @@ import {
   ScatterChart,
   XAxis,
   YAxis,
-  ResponsiveContainer,
 } from "recharts";
 
 import ChartButton from "@/components/custom/chart-button";
@@ -58,26 +57,24 @@ export function ScatterChartCard({
       </CardHeader>
       <CardContent className="relative">
         <ChartContainer config={{}}>
-          <ResponsiveContainer width="100%" height={300}>
-            <ScatterChart
-              data={scatterData}
-              margin={{
-                top: 20,
-                right: 20,
-                bottom: 20,
-                left: 20,
-              }}
-            >
-              <CartesianGrid />
-              <XAxis type="number" dataKey="x" />
-              <YAxis type="number" dataKey="y" />
-              <ChartTooltip
-                cursor={{ strokeDasharray: "3 3" }}
-                content={<ChartTooltipContent />}
-              />
-              <Scatter dataKey="y" fill={data[0]?.fill || "#8884d8"} />
-            </ScatterChart>
-          </ResponsiveContainer>
+          <ScatterChart
+            data={scatterData}
+            margin={{
+              top: 20,
+              right: 20,
+              bottom: 20,
+              left: 20,
+            }}
+          >
+            <CartesianGrid />
+            <XAxis type="number" dataKey="x" />
+            <YAxis type="number" dataKey="y" />
+            <ChartTooltip
+              cursor={{ strokeDasharray: "3 3" }}
+              content={<ChartTooltipContent />}
+            />
+            <Scatter dataKey="y" fill={data[0]?.fill || "#8884d8"} />
+          </ScatterChart>
         </ChartContainer>
         {!noAddButton && (
           <ChartButton

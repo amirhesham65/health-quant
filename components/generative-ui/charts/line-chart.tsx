@@ -5,7 +5,6 @@ import {
   Line,
   LineChart,
   XAxis,
-  ResponsiveContainer,
 } from "recharts";
 
 import ChartButton from "@/components/custom/chart-button";
@@ -47,35 +46,33 @@ export function LineChartCard({
       </CardHeader>
       <CardContent className="relative">
         <ChartContainer config={{}}>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart
-              accessibilityLayer
-              data={data}
-              margin={{
-                left: 12,
-                right: 12,
-              }}
-            >
-              <CartesianGrid vertical={false} />
-              <XAxis
-                dataKey="label"
-                tickLine={false}
-                axisLine={false}
-                tickMargin={8}
-                tickFormatter={(value) => value.slice(0, 6)}
-              />
-              <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent hideLabel />}
-              />
-              <Line
-                dataKey="value"
-                type="natural"
-                strokeWidth={2}
-                dot={false}
-              />
-            </LineChart>
-          </ResponsiveContainer>
+          <LineChart
+            accessibilityLayer
+            data={data}
+            margin={{
+              left: 12,
+              right: 12,
+            }}
+          >
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="label"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              tickFormatter={(value) => value.slice(0, 6)}
+            />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            <Line
+              dataKey="value"
+              type="natural"
+              strokeWidth={2}
+              dot={false}
+            />
+          </LineChart>
         </ChartContainer>
         {!noAddButton && (
           <ChartButton

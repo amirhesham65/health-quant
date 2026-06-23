@@ -1,6 +1,6 @@
 "use client";
 
-import { Pie, PieChart, ResponsiveContainer } from "recharts";
+import { Pie, PieChart } from "recharts";
 
 import ChartButton from "@/components/custom/chart-button";
 import {
@@ -44,21 +44,19 @@ export function PieChartCard({
           config={{}}
           className="mx-auto aspect-square max-h-[350px]"
         >
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-              <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent hideLabel />}
-              />
-              <Pie
-                data={data}
-                dataKey="value"
-                nameKey="label"
-                innerRadius={60}
-                strokeWidth={5}
-              />
-            </PieChart>
-          </ResponsiveContainer>
+          <PieChart>
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            <Pie
+              data={data}
+              dataKey="value"
+              nameKey="label"
+              innerRadius={60}
+              strokeWidth={5}
+            />
+          </PieChart>
         </ChartContainer>
         {!noAddButton && (
           <ChartButton

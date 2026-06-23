@@ -24,12 +24,10 @@ export default function DashboardPanelComponent({
   }, [dashboardNodes, setNodes]);
 
   return (
-    <div className="size-full pb-12">
-      <div className="size-full">
-        <ReactFlowProvider>
-          <DashboardPanelFlow isReadOnly={isReadOnly} />
-        </ReactFlowProvider>
-      </div>
+    <div className="size-full">
+      <ReactFlowProvider>
+        <DashboardPanelFlow isReadOnly={isReadOnly} />
+      </ReactFlowProvider>
     </div>
   );
 }

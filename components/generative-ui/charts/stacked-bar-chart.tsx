@@ -1,6 +1,6 @@
 "use client";
 
-import { Bar, BarChart, CartesianGrid, XAxis, ResponsiveContainer } from "recharts";
+import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
 import ChartButton from "@/components/custom/chart-button";
 import {
@@ -60,55 +60,53 @@ export function StackedBarChartCard({
       </CardHeader>
       <CardContent className="relative p-6">
         <ChartContainer config={{}} className="h-[300px] w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart 
-              accessibilityLayer 
-              data={data}
-              margin={{
-                left: 20,
-                right: 20,
-                top: 20,
-                bottom: 20,
-              }}
-            >
-              <CartesianGrid vertical={false} />
-              <XAxis
-                dataKey="label"
-                tickLine={false}
-                tickMargin={10}
-                axisLine={false}
-                tickFormatter={(value) => value.slice(0, 6)}
+          <BarChart 
+            accessibilityLayer 
+            data={data}
+            margin={{
+              left: 20,
+              right: 20,
+              top: 20,
+              bottom: 20,
+            }}
+          >
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="label"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+              tickFormatter={(value) => value.slice(0, 6)}
+            />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            {keysToRender.map((key, index) => (
+              <Bar
+                key={key}
+                dataKey={key}
+                stackId="stack"
+                radius={
+                  index === 0 
+                    ? [0, 0, 4, 4]
+                    : index === keysToRender.length - 1 
+                    ? [4, 4, 0, 0]
+                    : [0, 0, 0, 0]
+                }
+                fill={getSegmentColor(index)}
               />
-              <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent hideLabel />}
+            ))}
+            
+            {/* If no stacked data, show a single bar */}
+            {!hasStackedData && (
+              <Bar
+                dataKey="value"
+                radius={[4, 4, 4, 4]}
+                fill={getSegmentColor(0)}
               />
-              {keysToRender.map((key, index) => (
-                <Bar
-                  key={key}
-                  dataKey={key}
-                  stackId="stack"
-                  radius={
-                    index === 0 
-                      ? [0, 0, 4, 4]
-                      : index === keysToRender.length - 1 
-                      ? [4, 4, 0, 0]
-                      : [0, 0, 0, 0]
-                  }
-                  fill={getSegmentColor(index)}
-                />
-              ))}
-              
-              {/* If no stacked data, show a single bar */}
-              {!hasStackedData && (
-                <Bar
-                  dataKey="value"
-                  radius={[4, 4, 4, 4]}
-                  fill={getSegmentColor(0)}
-                />
-              )}
-            </BarChart>
-          </ResponsiveContainer>
+            )}
+          </BarChart>
         </ChartContainer>
         {!noAddButton && (
           <ChartButton

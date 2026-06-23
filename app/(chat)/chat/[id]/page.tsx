@@ -51,7 +51,7 @@ export default async function Page({ params }: PageProps) {
       <main className="h-full">
         <ResizablePanelGroup direction="horizontal" className="h-full">
           <ResizablePanel>
-            <div className="px-4 size-full">
+            <div className="size-full">
               <DashboardPanel
                 chatId={chat.id}
                 dashboardNodes={chat.dashboard as Node[]}

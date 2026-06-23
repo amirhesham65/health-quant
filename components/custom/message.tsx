@@ -13,6 +13,14 @@ import {
   DonutChartCard,
   StackedBarChartCard,
   RadarChartCard,
+  HorizontalBarChartCard,
+  BubbleChartCard,
+  GroupedBarChartCard,
+  MultiLineChartCard,
+  HistogramChartCard,
+  BoxPlotChartCard,
+  HeatmapChartCard,
+  ComposedChartCard,
 } from "../generative-ui/charts";
 import { Weather } from "../generative-ui/weather";
 import AnimatedShinyText from "../ui/animated-shiny-text";
@@ -92,12 +100,28 @@ export const Message = ({
         return <AreaChartCard {...commonProps} />;
       case "scatter":
         return <ScatterChartCard {...commonProps} />;
+      case "bubble":
+        return <BubbleChartCard {...commonProps} />;
       case "donut":
         return <DonutChartCard {...commonProps} />;
+      case "horizontalBar":
+        return <HorizontalBarChartCard {...commonProps} />;
       case "stackedBar":
         return <StackedBarChartCard {...commonProps} />;
+      case "groupedBar":
+        return <GroupedBarChartCard {...commonProps} />;
       case "radar":
         return <RadarChartCard {...commonProps} />;
+      case "multiLine":
+        return <MultiLineChartCard {...commonProps} />;
+      case "histogram":
+        return <HistogramChartCard {...commonProps} />;
+      case "boxPlot":
+        return <BoxPlotChartCard {...commonProps} />;
+      case "heatmap":
+        return <HeatmapChartCard {...commonProps} />;
+      case "composed":
+        return <ComposedChartCard {...commonProps} />;
       default:
         console.warn(`Unknown chart type: ${type}`);
         return <div>Unsupported chart type: {type}</div>;

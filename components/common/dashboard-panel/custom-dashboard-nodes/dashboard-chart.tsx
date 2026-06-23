@@ -10,6 +10,14 @@ import {
   DonutChartCard,
   StackedBarChartCard,
   RadarChartCard,
+  HorizontalBarChartCard,
+  BubbleChartCard,
+  GroupedBarChartCard,
+  MultiLineChartCard,
+  HistogramChartCard,
+  BoxPlotChartCard,
+  HeatmapChartCard,
+  ComposedChartCard,
 } from "@/components/generative-ui/charts";
 import { cn } from "@/lib/utils";
 import { ChartCardData, ChartType } from "@/types/chart-type";
@@ -77,9 +85,29 @@ export function DashboardChart({ id, data, selected = false }: NodeProps) {
         />
       );
       break;
+    case "bubble":
+      content = (
+        <BubbleChartCard
+          title={title}
+          caption={caption}
+          data={chartData}
+          noAddButton
+        />
+      );
+      break;
     case "donut":
       content = (
         <DonutChartCard
+          title={title}
+          caption={caption}
+          data={chartData}
+          noAddButton
+        />
+      );
+      break;
+    case "horizontalBar":
+      content = (
+        <HorizontalBarChartCard
           title={title}
           caption={caption}
           data={chartData}
@@ -98,12 +126,75 @@ export function DashboardChart({ id, data, selected = false }: NodeProps) {
         />
       );
       break;
+    case "groupedBar":
+      content = (
+        <GroupedBarChartCard
+          title={title}
+          caption={caption}
+          data={chartData}
+          dataKeys={dataKeys}
+          noAddButton
+        />
+      );
+      break;
     case "radar":
       content = (
         <RadarChartCard
           title={title}
           caption={caption}
           data={chartData}
+          noAddButton
+        />
+      );
+      break;
+    case "multiLine":
+      content = (
+        <MultiLineChartCard
+          title={title}
+          caption={caption}
+          data={chartData}
+          dataKeys={dataKeys}
+          noAddButton
+        />
+      );
+      break;
+    case "histogram":
+      content = (
+        <HistogramChartCard
+          title={title}
+          caption={caption}
+          data={chartData}
+          noAddButton
+        />
+      );
+      break;
+    case "boxPlot":
+      content = (
+        <BoxPlotChartCard
+          title={title}
+          caption={caption}
+          data={chartData}
+          noAddButton
+        />
+      );
+      break;
+    case "heatmap":
+      content = (
+        <HeatmapChartCard
+          title={title}
+          caption={caption}
+          data={chartData}
+          noAddButton
+        />
+      );
+      break;
+    case "composed":
+      content = (
+        <ComposedChartCard
+          title={title}
+          caption={caption}
+          data={chartData}
+          dataKeys={dataKeys}
           noAddButton
         />
       );

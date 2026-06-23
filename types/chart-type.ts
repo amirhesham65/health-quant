@@ -1,4 +1,20 @@
-export type ChartType = "pie" | "bar" | "line" | "area" | "scatter" | "bubble" | "donut" | "horizontalBar" | "stackedBar" | "radar";
+export type ChartType =
+  | "pie"
+  | "bar"
+  | "line"
+  | "area"
+  | "scatter"
+  | "bubble"
+  | "donut"
+  | "horizontalBar"
+  | "stackedBar"
+  | "groupedBar"
+  | "radar"
+  | "multiLine"
+  | "histogram"
+  | "boxPlot"
+  | "heatmap"
+  | "composed";
 
 export type ChartCardData = {
   title: string;

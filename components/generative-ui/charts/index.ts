@@ -5,4 +5,12 @@ export * from "./area-chart";
 export * from "./scatter-chart";
 export * from "./donut-chart";
 export * from "./stacked-bar-chart";
-export * from "./radar-chart"
+export * from "./radar-chart";
+export * from "./horizontal-bar-chart";
+export * from "./bubble-chart";
+export * from "./grouped-bar-chart";
+export * from "./multi-line-chart";
+export * from "./histogram-chart";
+export * from "./box-plot-chart";
+export * from "./heatmap-chart";
+export * from "./composed-chart";
